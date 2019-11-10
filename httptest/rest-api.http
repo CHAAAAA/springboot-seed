@@ -1,0 +1,57 @@
+GET http://localhost:8080/seed/user/getUser?name=wangyc
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/seed/user/listUser?order=name
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+
+GET http://localhost:8080/seed/user/userInfo?name=wangyc
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/seed/user/update
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+  "name": "wangyc",
+  "xhzgh": "1806191060",
+  "age": 28,
+  "birth": "19910629",
+  "gender": "1",
+  "COMMENTS": "COMxxMENTS"
+}
+
+###
+
+POST http://localhost:8080/seed/user/insert
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+  "name": "wangyc",
+  "xhzgh": "1806191060",
+  "age": 28,
+  "birth": "19910629",
+  "gender": "1",
+  "comments": "COMMENTS"
+}
+
+###
+
+POST http://localhost:8080/seed/user/delete?badName=wangyc
+Accept: */*
+Cache-Control: no-cache
+
+
+###

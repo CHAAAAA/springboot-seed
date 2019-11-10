@@ -1,0 +1,50 @@
+# https://docs.spring.io/spring-boot/docs/2.2.1.RELEASE/reference/html/appendix-application-properties.html#core-properties
+server:
+  port: 8080
+  servlet:
+    context-path: /seed
+
+spring:
+  devtools:
+    restart:
+      # https://stackoverflow.com/questions/39019938/springboot-devtools-restcontroller-not-always-mapped-when-rebuild-project
+      # 避免热加载重启时编译未完成，导致404
+      poll-interval: 1500ms
+      quiet-period: 1000ms
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: 'datahub'
+    password: 'datahub'
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    type: com.zaxxer.hikari.HikariDataSource
+    # https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      connection-test-query: select 1 from dual
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      pool-name: SeedPool
+      data-source-properties:
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        cachePrepStmts: true
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+
+#mybatis 设置
+#https://mybatis.org/mybatis-3/zh/configuration.html#typeAliases
+#https://github.com/mybatis/spring-boot-starter/blob/master/mybatis-spring-boot-autoconfigure/src/site/markdown/index.md
+mybatis:
+  type-aliases-package: cn.edu.pku.datahub.system.domain,
+  mapper-locations: classpath*:cn/edu/pku/datahub/**/xml/*Mapper.xml
+  configuration:
+    jdbc-type-for-null: VARCHAR
+    map-underscore-to-camel-case: true
+    default-statement-timeout: 30
+    call-setters-on-nulls: true
