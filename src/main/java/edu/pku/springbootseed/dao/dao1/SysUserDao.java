@@ -1,6 +1,7 @@
-package edu.pku.springbootseed.dao.system;
+package edu.pku.springbootseed.dao.dao1;
 
 import edu.pku.springbootseed.common.Constant;
+import edu.pku.springbootseed.common.annotation.DatahubDs;
 import edu.pku.springbootseed.common.model.ResultSetHashMap;
 import edu.pku.springbootseed.domain.SysUser;
 import org.apache.ibatis.annotations.*;
@@ -14,6 +15,7 @@ import java.util.List;
  * @author wangyc
  * @since 2019/11/10
  */
+@DatahubDs
 @Mapper
 public interface SysUserDao {
     /**

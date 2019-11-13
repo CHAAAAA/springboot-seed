@@ -11,31 +11,28 @@ spring:
       # 避免热加载重启时编译未完成，导致404
       poll-interval: 1500ms
       quiet-period: 1000ms
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
-    username: 'datahub'
-    password: 'datahub'
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-    type: com.zaxxer.hikari.HikariDataSource
-    # https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby
-    hikari:
+  datahub:
+    datasource:
+      jdbc-url: jdbc:oracle:thin:@localhost:1521:XE
+      username: 'datahub'
+      password: 'datahub'
       minimum-idle: 5
       maximum-pool-size: 15
       connection-test-query: select 1 from dual
       max-lifetime: 1800000
       connection-timeout: 30000
-      pool-name: SeedPool
-      data-source-properties:
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        cachePrepStmts: true
-        useServerPrepStmts: true
-        useLocalSessionState: true
-        rewriteBatchedStatements: true
-        cacheResultSetMetadata: true
-        cacheServerConfiguration: true
-        elideSetAutoCommits: true
-        maintainTimeStats: false
+      pool-name: DatahubPool
+  main:
+    datasource:
+      jdbc-url: jdbc:oracle:thin:@localhost:1521:XE
+      username: 'system'
+      password: 'oracle'
+      minimum-idle: 5
+      maximum-pool-size: 15
+      connection-test-query: select 1 from dual
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      pool-name: SysPool
 
 #mybatis 设置
 #https://mybatis.org/mybatis-3/zh/configuration.html#typeAliases

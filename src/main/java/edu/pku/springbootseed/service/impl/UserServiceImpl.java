@@ -1,7 +1,7 @@
 package edu.pku.springbootseed.service.impl;
 
 import edu.pku.springbootseed.common.model.ResultSetHashMap;
-import edu.pku.springbootseed.dao.system.SysUserDao;
+import edu.pku.springbootseed.dao.dao1.SysUserDao;
 import edu.pku.springbootseed.domain.SysUser;
 import edu.pku.springbootseed.service.UserService;
 import lombok.extern.slf4j.Slf4j;
